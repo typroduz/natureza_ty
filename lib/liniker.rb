@@ -1,20 +1,21 @@
-class Liniker
-  
-  def initialize(db)
-    @db = db
-  end
+require_relative '../lib/generator'
 
-  def subs(text)
-    @db.each do |key, value|
-      if(value.nil?)
-        text = text.gsub("$#{key}$", "")
-        text = text.gsub("  ", " ")
-      else  
-        text = text.gsub("$#{key}$", value)
-        puts text
-      end 
-    end
+  # def initialize(db)
+  #   @db = db
+  # end
 
-    return text
-  end
-end
+db_array = [ 
+  "{'NOME' => 'Alecrim', 'QT' => 'cineol', 'CIENTIIFICO' => 'Rosmarinus'}", 
+  "{'NOME' => 'Pum', 'QT' => 'zin', 'CIENTIIFICO' => 'o'}"]
+
+
+  dba = db_array.each do |page|
+          puts page
+        end
+
+  text = '$NOME$ $QT$ ($CIENTIIFICO$)'
+  generator = Generator.new(db_array)
+  result = generator.subs(text)
+  return text
+  puts result
+

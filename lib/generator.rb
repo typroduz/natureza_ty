@@ -1,11 +1,11 @@
 class Generator
   
-  def initialize(db)
-    @db = db
+  def initialize(dba)
+    @dba = dba
   end
 
   def subs(text)
-    @db.each do |key, value|
+    @dba.each do |key, value|
       if(value.nil?)
         text = text.gsub("$#{key}$", "")
         text = text.gsub("  ", " ") #rataria
@@ -14,7 +14,5 @@ class Generator
         text = text.gsub("$#{key}$", value)
       end 
     end
-
-    return text
   end
 end
